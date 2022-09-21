@@ -8,7 +8,7 @@ class Event(models.Model):
     event_name = models.CharField(max_length=200)
     event_description = RichTextField()
     is_premium = models.BooleanField(default=False)
-    event_image = models.ImageField(upload_to='event.png')
+    event_image = models.ImageField(upload_to='event_images')
     slug = models.SlugField(blank=True, null=True)
     
     def save(self, *args, **kwargs):

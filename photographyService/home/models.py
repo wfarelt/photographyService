@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from datetime import date
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Event(models.Model):
     is_premium = models.BooleanField(default=False)
     event_image = models.ImageField(upload_to='event_images')
     slug = models.SlugField(blank=True, null=True)
+    event_date = models.DateField(default=date.today)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.event_name)

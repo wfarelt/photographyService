@@ -20,3 +20,11 @@ class Event(models.Model):
     def __str__(self):
         return self.event_name
 
+class Photo(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    photo_url = models.URLField(max_length=300)
+    can_view = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.photo_url
+

@@ -409,7 +409,7 @@
                             <h5 class="card-title">{{ event.event_name}}</h5>
                             <p class="card-text">{{ event.event_description|safe}}</p>
                             <p><em>-- {{ event.event_date }} --</em></p>
-                            <a href="{% url 'home' %}" class="btn btn-primary">Ver Album</a>
+                            <a href="{% url 'view_event' event.slug %}" class="btn btn-primary">Ver Album</a>
                         </div>
                     </div>
                 </div>

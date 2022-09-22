@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% load static%}
+
+{% block content %}
+    <div class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Why become pro?</h1>
+                    <p>Photography Service is a website that allows you to find photographers for your events.</p>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="">Membership type</label>
+                            <select name="membership_type" id="" class="form-control">
+                                <option value="MENSUAL">Mensual - 10$</option>
+                                <option value="ANUAL">Anual - 100$ </option>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'img/membership.png' %}" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock%}

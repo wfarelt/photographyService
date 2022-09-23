@@ -1,30 +1,48 @@
 {% extends 'base.html' %}
-
-
-{% load static%}
+{% load static %}
 
 {% block content %}
-    <div class="mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1>Why become pro?</h1>
-                    <p>Photography Service is a website that allows you to find photographers for your events.</p>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="">Membership type</label>
-                            <select name="membership_type" id="" class="form-control">
-                                <option value="MENSUAL">Mensual - 10$</option>
-                                <option value="ANUAL">Anual - 100$ </option>
-
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <img src="{% static 'img/membership.png' %}" alt="" class="img-fluid">
-                </div>
-            </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Why become pro?</h3>
+      <p>Disfruta la forma de ofertar tu trabajo</p>
+      <p>Conoce a nuevos clientes</p>  
+      <p>Obtén más ingresos</p>
+      <br>
+      <form method="POST" id="payment-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="card-element">Tarjeta de Credito o Debito</label>
+          <select name="membership" class="form-control">
+            <option>Seleccionar:</option>
+            <option value="MONTHLY">Mensual - 1$</option>
+            <option value="YEARLY">Anual - 10$</option>
+          </select>
         </div>
+        <br>
+        <div id="card-element">
+          <!-- placeholder for Elements -->
+        </div>
+        <br>
+        <button id="card-button" class="btn btn-success mt-4">Submit Payment</button>
+        <p id="payment-result">
+          <!-- we'll pass the response from the server here -->
+        </p>
+  
+      </form>
+  
     </div>
-{% endblock%}
+    <div class="col-md-6 text-center">
+      <img src="{% static 'img/membership.jpg' %}" alt="" style="width: 80%;">
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/client.js' %}"></script>
+{% endblock %}

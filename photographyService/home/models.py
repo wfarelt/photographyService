@@ -2,8 +2,24 @@ from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from datetime import date
+from django.contrib.auth.models import User
 
 # Create your models here.
+
+SUBSCRIPTION_TYPE = (
+    ('F', 'FREE'),
+    ('M', 'MONTHLY'),
+    ('Y', 'YEARLY')
+)
+
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_pro = models.BooleanField(default=False)
+    pro_exp_date = models.DateField(null=True, blank=True)
+    subscription_type = models.CharField(max_length=20, choices=SUBSCRIPTION_TYPE, default='FREE')
+
+    def __str__(self):
+        return self.user.username
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200)

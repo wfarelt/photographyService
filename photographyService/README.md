@@ -13,3 +13,6 @@ pip install -r requirements.txt
 
 pip install django-ckeditor
 pip install Pillow
+
+# Stripe
+https://codigofacilito.com/articulos/stripe-django

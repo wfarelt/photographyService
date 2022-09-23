@@ -139,3 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+from decouple import config
+
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')

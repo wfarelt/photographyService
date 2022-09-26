@@ -6,9 +6,11 @@
     <div class="mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>{{ event.name }}</h1>
-                    <p>{{ event.description }}</p>
+                <div class="col-md-12 text-center">
+                    <h1>{{ event.event_name }}</h1>
+                    <p>{{ event.event_description|safe }}</p>
+                    <img src="/media/{{ event.qr_code}}" alt="" class="card-img-top" style="width: 50%;">
+
                 </div>
             </div>
         </div>

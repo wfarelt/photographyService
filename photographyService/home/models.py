@@ -54,9 +54,18 @@ class Event(models.Model):
 
 class Photo(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    photo_url = models.URLField(max_length=300)
+    photo_url = models.ImageField(upload_to='events/images/')
+    thumbnail_photo = models.ImageField(upload_to='events/images/thumb/', null=True, blank=True)
     can_view = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        super(Photo, self).save(*args, **kwargs)
+        img = Image.open(self.photo_url.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.thumbnail_photo.path)
+
     def __str__(self):
-        return self.photo_url
+        return str(self.photo_url)
 

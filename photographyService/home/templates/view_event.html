@@ -6,10 +6,41 @@
     <div class="mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <h1>{{ event.event_name }}</h1>
-                    <p>{{ event.event_description|safe }}</p>
-                    <img src="/media/{{ event.qr_code}}" alt="" class="card-img-top" style="width: 50%;">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-text">Event Details</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Event name: <strong>{{ event.event_name }}</strong></p>
+                            <p class="card-text">Event Description: {{ event.event_description|safe }}</p>
+                            <p class="card-text">Event Date: {{ event.event_date }}</p>
+                            <p class="card-text">Event Time: {{ event.event_time }}</p>
+                            <p class="card-text">Event Location: {{ event.event_location }}</p>
+                            <p class="card-text">Premium: {{ event.is_premium }}</p>
+                            <p class="card-text">Event Capacity: {{ event.event_capacity }}</p>
+                            <img src="/media/{{ event.qr_code}}" alt="" class="card-img-top" style="width: 50%;">
+                            <a href="" class="btn btn-primary">Edit</a>
+                            <a href="" class="btn btn-danger">Delete</a>
+                            <form action="">
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Agregar foto:</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <button type="submit" class="btn btn-success mt-2">Subir</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1>Mis fotos:</h1>
+                    {% for photo in photos %}
+                        <a href="#">
+                            <img src="/media/{{ photo.thumbnail_photo }}" style="width:200px;height:200px" class="mb-2">
+                        </a>
+                        
+                    {% endfor %}
+                        
 
                 </div>
             </div>

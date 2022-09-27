@@ -17,10 +17,10 @@ def home(request):
 
 def view_event(request, slug):
     event = Event.objects.filter(slug=slug).first()
-    photo = Photo.objects.filter(event=event)
+    photos = Photo.objects.filter(event=event)
     context = {
         'event': event,
-        'photo': photo
+        'photos': photos
     }
     return render(request, 'view_event.html', context)
 
@@ -55,3 +55,14 @@ def become_pro(request):
 
 def charge(request):
     return render(request, 'charge.html')
+
+def photographer(request):
+    return render(request, 'photographer.html')
+
+def my_events(request):
+    #events = Event.objects.filter(photographer=request.user)
+    events = Event.objects.all()
+    context = {
+        'events': events
+    }
+    return render(request, 'my_events.html', context)

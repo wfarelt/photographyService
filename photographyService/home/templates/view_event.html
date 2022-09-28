@@ -5,6 +5,7 @@
 {% block content %}
     <div class="mt-5">
         <div class="container">
+            <a href="{% url 'my_events' %}" class="btn btn-dark mb-2">Volver</a>
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -23,10 +24,10 @@
                             <a href="" class="btn btn-primary">Edit</a>
                             <a href="" class="btn btn-danger">Delete</a>
                             <form action="">
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label for="exampleFormControlFile1">Agregar foto:</label>
                                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                    <button type="submit" class="btn btn-success mt-2">Subir</button>
+                                    <button type="submit" class="btn btn-outline-success mt-2">Subir</button>
                                 </div>
                             </form>
                         </div>

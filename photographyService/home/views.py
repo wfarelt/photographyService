@@ -1,3 +1,4 @@
+import profile
 from django.shortcuts import render, redirect
 from .models import Event, Photo, Profile
 from django.conf import settings
@@ -13,6 +14,11 @@ def home(request):
     context = {
         'events': events
     }
+    
+    if request.user.is_authenticated:
+        profile = Profile.objects.filter(user=request.user).first()
+        request.session['profile'] = profile.is_pro
+
     return render(request, 'home.html', context)
 
 def view_event(request, slug):
@@ -26,6 +32,7 @@ def view_event(request, slug):
 
 def become_pro(request):
     if request.method == 'POST':
+        
         membership = request.POST.get('membership','MONTHLY')
         amount = 1
         if membership == 'YEARLY':
@@ -41,14 +48,23 @@ def become_pro(request):
             customer=customer,
             amount=amount*1,
             currency='usd',
-            description='Photography Service'
+            description='Membership'
         )
-        if charge['paid'] == False:
+        if charge['paid'] == True:
             profile = Profile.objects.filter(user=request.user).first()
-            profile.is_pro = True
-            profile.pro_exp_date = date.today() + timedelta(days=30)
-            profile.subscription_type = membership
-            profile.save()
+            if charge['amount'] == 1:
+                profile.subscription_type = 'M'
+                profile.is_pro = True
+                expiry = datetime.now() + timedelta(days=30)
+                profile.pro_expiry_date = expiry
+                profile.save()
+            elif charge['amount'] == 10:
+                profile.subscription_type = 'Y'
+                profile.is_pro = True
+                expiry = datetime.now() + timedelta(days=365)
+                profile.pro_expiry_date = expiry
+                profile.save()
+
             return redirect('/charge/')
         
     return render(request, 'become_pro.html')

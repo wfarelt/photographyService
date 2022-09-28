@@ -23,9 +23,15 @@
             {% else %}
                 You are not logged in <a href="{% url 'login' %}" class="btn btn-outline-dark my-2 my-sm-0 ml-2 mr-2">Login</a>
                 <a href="{% url 'signup' %}" class="btn btn-outline-success my-2 my-sm-0 mr-2">Register</a>
-            {% endif %}            
-            <a href="{% url 'become_pro' %}" class="btn btn-outline-info my-2 my-sm-0 mr-2">Become Pro</a>
-            <a href="#" class="btn btn-outline-info my-2 my-sm-0 mr-2">Pro+</a>
+            {% endif %}    
+            
+            {% if request.session.profile %}                
+                <a href="#" class="btn btn-outline-info my-2 my-sm-0 mr-2">Pro+</a>    
+            {% else %}
+                <a href="{% url 'become_pro' %}" class="btn btn-outline-info my-2 my-sm-0 mr-2">Become Pro</a>
+            {% endif %}
+            
+            
         </form>
     </div>
 </nav>

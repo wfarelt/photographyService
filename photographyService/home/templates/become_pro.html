@@ -9,7 +9,7 @@
       <p>Disfruta la forma de ofertar tu trabajo</p>
       <p>Conoce a nuevos clientes</p>  
       <p>Obtén más ingresos</p>
-      <br>
+      <br>      
       <form method="POST" id="payment-form">
         {% csrf_token %}
         <div class="form-group">
@@ -25,7 +25,7 @@
           <!-- placeholder for Elements -->
         </div>
         <br>
-        <button id="card-button" class="btn btn-success mt-4">Submit Payment</button>
+        <button type="submit" id="card-button" class="btn btn-success mt-4">Submit Payment</button>
         <p id="payment-result">
           <!-- we'll pass the response from the server here -->
         </p>

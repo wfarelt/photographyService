@@ -2,20 +2,50 @@
 <!-- templates/signup.html -->
 
 {% block content %}
-<div class="container text-center col-md-3 mt-5">
-  <div class="card">
-    <div class="card-header">
-      <h2>Sign Up</h2>
-    </div>
-    <div class="card-body">
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
-      </form>
-    </div>
-    <div class="card-footer">
-      <a href="{% url 'login' %}">Already have an account?</a>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h2>Registro</h2>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
+            
+            <div class="form-group">
+              <label for="username">Usuario</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Introduzca el nombre de usuario" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Introduzca un correo" required>
+            </div>
+            <div class="form-group">
+              <label for="password1">Contraseña</label>
+              <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña" required>
+            </div>
+            <div class="form-group">
+              <label for="password2">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirmar Contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Registrar</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'login' %}">¿Ya tienes una cuenta?</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

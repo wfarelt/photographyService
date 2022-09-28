@@ -1,0 +1,31 @@
+{% extends "base.html" %}  
+
+{% block content %}
+<div class="container mt-5">
+  
+  <div class="content-section">
+    <div class="media">
+      <img
+        class="rounded-circle account-img"
+        src="{{ profile.image.url }}"
+        alt="Profile Image"
+        style="width:150px ;"
+      />
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+        
+        {% if profile.is_pro %}
+          <p>Cuenta: PRO+</p>  
+        {% else %}
+          <p>Cuenta: FREE</p>
+        {% endif %}
+          
+        
+      </div>
+    </div>
+    <!-- FORM HERE -->
+  </div>
+  
+</div>
+{% endblock content %}

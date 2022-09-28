@@ -1,4 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light " style="background-color: yellow;">
+<style>
+    .active{
+        background-color: white;
+    } 
+    .nav-item :hover{
+        background-color: white;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: yellow;" id="nav-bar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
         aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -6,14 +15,17 @@
     <div class="collapse navbar-collapse m-3" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#"><b>photographyService</b></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
+            <li class="nav-item {{home_page}}">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'my_events' %}">Mis Eventos</a>
+                <a class="nav-link {{my_events_page}}" href="{% url 'my_events' %}">Mis Eventos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="{% url 'photographer' %}">Fotografos</a>
+                <a class="nav-link {{photographer_page}}" href="{% url 'photographer' %}">Fotografos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'profile' %}">Profile</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

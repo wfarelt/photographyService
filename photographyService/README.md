@@ -16,3 +16,12 @@ pip install Pillow
 
 # Stripe
 https://codigofacilito.com/articulos/stripe-django
+
+# Eliminar todos los archivos de migraciones, excepto __init__.py
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+
+# Generar el 0001_initial.py en cada app con directorio migrations.
+./manage.py makemigrations
+
+# migrate fake.
+./manage.py migrate --fake

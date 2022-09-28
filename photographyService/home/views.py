@@ -1,3 +1,4 @@
+from importlib.resources import contents
 import profile
 from django.shortcuts import render, redirect
 from .models import Event, Photo, Profile
@@ -12,6 +13,7 @@ import stripe
 def home(request):
     events = Event.objects.all()
     context = {
+        "home_page": "active",
         'events': events
     }
     
@@ -73,12 +75,16 @@ def charge(request):
     return render(request, 'charge.html')
 
 def photographer(request):
-    return render(request, 'photographer.html')
+    context = {
+        "photographer_page": "active",
+    }
+    return render(request, 'photographer.html', context)
 
 def my_events(request):
     #events = Event.objects.filter(photographer=request.user)
     events = Event.objects.all()
     context = {
+        'my_events_page': "active",
         'events': events
     }
     return render(request, 'my_events.html', context)
